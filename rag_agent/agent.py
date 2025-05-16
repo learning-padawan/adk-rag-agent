@@ -8,6 +8,10 @@ from .tools.get_corpus_info import get_corpus_info
 from .tools.list_corpora import list_corpora
 from .tools.rag_query import rag_query
 
+from google.adk.tools.agent_tool import AgentTool
+from rag_agent.sub_agents.greeting_agent.agent import greeting_agent
+
+
 root_agent = Agent(
     name="RagAgent",
     # Using Gemini 2.5 Flash for best performance with RAG operations
@@ -21,6 +25,7 @@ root_agent = Agent(
         get_corpus_info,
         delete_corpus,
         delete_document,
+        AgentTool(greeting_agent),
     ],
     instruction="""
     # 🧠 Vertex AI RAG Agent
@@ -39,6 +44,7 @@ root_agent = Agent(
     5. **Get Corpus Info**: You can provide detailed information about a specific corpus, including file metadata and statistics.
     6. **Delete Document**: You can delete a specific document from a corpus when it's no longer needed.
     7. **Delete Corpus**: You can delete an entire corpus and all its associated files when it's no longer needed.
+    8. **Greet People**: You can greet users and provide information about the RAG agent.
     
     ## How to Approach User Requests
     
@@ -54,7 +60,7 @@ root_agent = Agent(
     
     ## Using Tools
     
-    You have seven specialized tools at your disposal:
+    You have eight specialized tools at your disposal:
     
     1. `rag_query`: Query a corpus to answer questions
        - Parameters:
@@ -91,6 +97,12 @@ root_agent = Agent(
        - Parameters:
          - corpus_name: The name of the corpus to delete
          - confirm: Boolean flag that must be set to True to confirm deletion
+         
+   8. `greeting_agent`: A sub-agent that can greet users and provide information about the RAG agent  
+       - Behavior:  
+         - Responds to user greetings an`d questions about the RAG system in a friendly and informative way.  
+         - Can be used to introduce the capabilities of the agent or assist first-time users.
+
     
     ## INTERNAL: Technical Implementation Details
     
