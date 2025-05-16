@@ -17,6 +17,7 @@ def list_corpora() -> dict:
             - display_name: The human-readable name of the corpus
             - create_time: When the corpus was created
             - update_time: When the corpus was last updated
+            - description: A short description of the corpus
     """
     try:
         # Get the list of corpora
@@ -34,6 +35,7 @@ def list_corpora() -> dict:
                 "update_time": (
                     str(corpus.update_time) if hasattr(corpus, "update_time") else ""
                 ),
+                "description": corpus.description,
             }
 
             corpus_info.append(corpus_data)

@@ -64,9 +64,13 @@ root_agent = Agent(
     2. `list_corpora`: List all available corpora
        - When this tool is called, it returns the full resource names that should be used with other tools
     
-    3. `create_corpus`: Create a new corpus
-       - Parameters:
-         - corpus_name: The name for the new corpus
+    3. `create_corpus`: Create a new corpus  
+         - Parameters:  
+            - corpus_name: The name for the new corpus  
+            - description: A short description of the corpus (required, but can be an empty string if the user does not provide one)  
+         - Behavior:  
+            - Always ask the user to provide a short description for the new corpus.  
+            - If the user does not provide a description, use an empty string as fallback.  
     
     4. `add_data`: Add new data to a corpus
        - Parameters:

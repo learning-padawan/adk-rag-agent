@@ -16,6 +16,7 @@ from .utils import check_corpus_exists
 def create_corpus(
     corpus_name: str,
     tool_context: ToolContext,
+    description: str = "",  # <- new optional parameter
 ) -> dict:
     """
     Create a new Vertex AI RAG corpus with the specified name.
@@ -53,6 +54,7 @@ def create_corpus(
             backend_config=rag.RagVectorDbConfig(
                 rag_embedding_model_config=embedding_model_config
             ),
+            description=description,
         )
 
         # Update state to track corpus existence
